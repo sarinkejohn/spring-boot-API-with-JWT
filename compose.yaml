@@ -1,0 +1,21 @@
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres-spring-boot-jwt-security-dev
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: test
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: jwt_database
+      PGDATA: /data/postgres
+    ports:
+      - "5436:5432"
+    volumes:
+      - postgres_data:/data/postgres
+    networks:
+      - backend
+networks:
+  backend:
+    driver: bridge
+volumes:
+  postgres_data:
